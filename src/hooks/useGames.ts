@@ -16,13 +16,13 @@ export interface Game {
   parent_platforms: { platform: Platform }[]
 }
 
-interface FetchGamesResonse {
+interface FetchGamesResponse {
   count: number;
   results: Game[];
 }
 
 const useGames = () => {
-    const [games, setGames] = useState<Game[]>([]);
+  const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
@@ -31,7 +31,7 @@ const useGames = () => {
 
     setLoading(true);
     apiClient
-      .get<FetchGamesResonse>("/games", { signal: controller.signal })
+      .get<FetchGamesResponse>("/games", { signal: controller.signal })
       .then((res) => {
         setGames(res.data.results);
         setLoading(false);
